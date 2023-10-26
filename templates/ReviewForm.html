@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.book-background {
+  background-image: url("https://media.istockphoto.com/id/501653022/photo/e-book-reader-concept.jpg?s=612x612&w=0&k=20&c=JuiQaex_JcUMib5YSEUGYjP1Eb2g-ag8ek10h-7lJ0Q=");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+p {
+  margin-top: 20px;
+}
+
+a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+  <div class="book-background">
+    <div class="login-container">
+      <h1>Enter your</h1>
+   
+      <form method="POST" action="/ReviewForm">
+        {% csrf_token %}
+         
+             
+            
+         
+        <input type="hidden" class="form-control" id="name" name="name" aria-describedby="emailHelp" value="{{name}}">
+        <input type="hidden" class="form-control" id="pid" name="pid" aria-describedby="emailHelp" value="{{pid}}">
+            <label for="id" class="form-label">Review</label>
+            <input type="text" class="form-control" id="desc" name="desc" aria-describedby="emailHelp">
+        
+   
+      
+         
+              <label for="Password" class="form-label">Score</label>
+              <input type="text" class="form-control" id="score" name="score" aria-describedby="emailHelp">
+            
+           
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    
+    </div>
+  </div>
+</body>
+</html>

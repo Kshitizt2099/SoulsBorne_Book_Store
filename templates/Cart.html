@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .cart-container {
+           position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #dcdcdc;
+            padding-bottom: 10px;
+        }
+
+        .item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            font-size: 16px;
+            color: #666666;
+        }
+
+        .item-quantity {
+            font-size: 16px;
+            color: #666666;
+        }
+
+        .total-price {
+            text-align: right;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            font-size: 20px;
+            color: #666666;
+        }
+        form{
+          display:inline;
+        }
+        #checkout{
+          margin: auto;
+          color: white;
+          background-color: skyblue;
+          padding-top: 20px;
+          padding-left: 50px;
+          padding-right: 50px;
+          padding-bottom: 20px;
+          font-size: large;
+          border: skyblue;
+          border-radius: 20px;
+          
+
+        }
+        #checkout:hover{
+            background-color: red;
+        }
+        .checkout_Conatiner{
+          position: absolute;
+          bottom: 50px;
+          left: 675px;
+        }
+        
+
+    </style>
+</head>
+<body>
+  <a href="UserBack"><img width=40px  height=40px src="https://cdn-icons-png.flaticon.com/512/626/626029.png?w=740&t=st=1691251062~exp=1691251662~hmac=ee05a04df5b04165dce804f663d33a071c3aca66f6121f99290d4bf2630d712f"></a>
+    <div class="cart-container">
+   
+      {%for i in data %}
+        <div class="cart-item">
+           
+            <div class="item-details">
+                <div class="item-title">{{i.name}}</div>
+                <div class="item-price">{{i.price}}</div>
+                <label>Quantity</label>
+                <form method="post" action="/updateCart">
+                 {% csrf_token %}
+                 <input type="hidden" id="id" name="id" value="{{i.p_id}}" />
+                 <input type="hidden" id="name" name="name" value="{{i.name}}" />
+                 <input type="hidden" id="price" name="price" value={{i.price}} />
+               <input type="hidden" id="inc" name="op" value="inc" />
+               <input type="image" name="Name of image button" width=20px height=20px src="https://cdn-icons-png.flaticon.com/512/63/63747.png?w=740&t=st=1691249863~exp=1691250463~hmac=42b79f9d795120f8d1f8473b0097ca68e91126f4a95f030cdb907702b71f1246" alt="text">
+                </form>
+               <input type="number" id="quantity" name="quantity" min=1 value={{i.qty}} min="1">
+               <form method="post" action="/updateCart">
+                 {% csrf_token %}
+                 <input type="hidden" id="id" name="id" value="{{i.p_id}}" />
+                 <input type="hidden" id="name" name="name" value="{{i.name}}" />
+                 <input type="hidden" id="price" name="price" value={{i.price}} />
+               <input type="hidden" id="dec" name="op" value="dec"/>
+               <input type="image" name="Name of image button" width=20px height=20px src="https://cdn-icons-png.flaticon.com/512/339/339879.png?w=740&t=st=1691250297~exp=1691250897~hmac=caab67049471c6237e914a9aea4dcb6c6dc7c3192d80e834b0e30bc367301411" alt="text">
+               </form>
+
+               <form method="post" action="/DeleteCart">
+                {% csrf_token %}
+                <input type="hidden" id="id" name="id" value="{{i.p_id}}" />
+                <input type="hidden" id="name" name="name" value="{{i.name}}" />
+                <input type="hidden" id="price" name="price" value={{i.price}} />
+              
+              <button type="submit" class="btn btn-primary">Delete</button>
+              </form>
+            </div>
+        </div>
+
+        {% endfor %}
+    
+
+        <div class="total-price">Total: RS {{total}}</div>
+    </div>
+    <div class="checkout_Conatiner">
+      <a href="checkout"><button id="checkout">Checkout</button></a>
+  
+    </div>
+    
+</body>
+</html>

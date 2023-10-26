@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Admin User Login</title>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.book-background {
+  background-image: url("https://images2.minutemediacdn.com/image/fetch/c_fill,g_auto,f_auto,h_1024,w_1024/https%3A%2F%2Fwinteriscoming.net%2Ffiles%2F2018%2F12%2FGRRM-2020-Calendar-front-1024x1024.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+p {
+  margin-top: 20px;
+}
+
+a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+  <div class="book-background">
+    <div class="login-container">
+      <h1>Admin Login</h1>
+   
+      <form method="POST" action="/Adminendpoint">
+        {% csrf_token %}
+         
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+            
+         
+        
+            <label for="id" class="form-label">Admin_id</label>
+            <input type="text" class="form-control" id="id" name="id" aria-describedby="emailHelp">
+        
+   
+      
+         
+              <label for="Password" class="form-label"> Email</label>
+              <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+             
+              <label for="Password" class="form-label"> Password</label>
+              <input type="text" class="form-control" id="Password" name="Password" aria-describedby="emailHelp">
+           
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <form method="POST" action="ForgetManage">
+            {% csrf_token %}
+            <input type="hidden" name="path" id="path" value="Adminuser">
+            <p>Forget Password?  <button type="submit">Forget Password</button></p>
+          </form>
+          <a href="/">Back</a> 
+      
+    </div>
+  </div>
+</body>
+</html>

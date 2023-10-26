@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{data.name}}</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Movie Info Section */
+.movie-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.details {
+    margin-left: 20px;
+}
+
+.details p {
+    margin: 5px 0;
+}
+
+/* Plot Section */
+.plot {
+    margin-bottom: 20px;
+}
+
+/* Cast Section */
+.cast {
+    margin-bottom: 20px;
+}
+
+.cast ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cast li {
+    margin-bottom: 5px;
+}
+
+/* Reviews Section */
+.reviews {
+    margin-bottom: 20px;
+}
+
+.review {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.review p {
+    margin: 5px 0;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+    </style>
+</head>
+<body>
+   
+    <header>
+        <span><a href="UserBack"><img width=40px  height=40px src="https://cdn-icons-png.flaticon.com/512/626/626029.png?w=740&t=st=1691251062~exp=1691251662~hmac=ee05a04df5b04165dce804f663d33a071c3aca66f6121f99290d4bf2630d712f"></a></span>
+        <h1>{{data.name}}</h1>
+      
+    </header>
+
+    <main>
+        <div class="movie-info">
+            <img src={{data.image}} alt="Movie Title Poster">
+            <div class="details">
+                <p><strong>Release Year:</strong>{{data.Year}}</p>
+                <p><strong>Genre:</strong> {{data.Genre}}</p>
+                <p><strong>Author:</strong> {{data.author}}</p>
+          
+                <p><strong>Price:</strong>{{data.price}}</p>
+                <p><strong>IMDb Rating:</strong>{{rating}}</p>
+            </div>
+        </div>
+
+        <div class="plot">
+            <h2>Plot Summary</h2>
+            <p>{{data.desc}}</p>
+        </div>
+
+        <div class="cast">
+
+        </div>
+        <form method="POST" action="/cart">
+            {% csrf_token %}
+            <input type="hidden" id="name" name="name" value="{{data.name}}" >
+            <input type="hidden" id="price" name="price" value={{data.price}} >
+            <input type="hidden" id="id" name="id" value="{{data.id}}" >
+           
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+            
+          </form>
+
+        <div class="reviews">
+            <h2>Reviews</h2>
+           {% for i in reviews %}
+           <div class="review">
+            <p><strong>{{i.username}}:</strong>"{{i.desc}}"</p>
+            <p><strong>Rating:</strong> {{i.score}}/5</p>
+              </div>
+
+
+           {%endfor%}
+    
+        </div>
+    </main>
+
+
+</body>
+</html>
